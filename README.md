@@ -7,8 +7,8 @@ HACS에서 Custom Integration 추가하신담에 여기 경로 추가하세요.
 ```yaml
 switch:
   - platform: switcherio_ha
+    type: "1" #1구 2구의 경우는 2
     mac: 'XX:XX:XX:XX:XX:XX'
-
 ```
 
 [![hacs_badge](https://img.shields.io/badge/HACS-Default-orange.svg?style=for-the-badge)](https://github.com/custom-components/hacs)
