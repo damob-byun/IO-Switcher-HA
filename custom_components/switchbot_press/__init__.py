@@ -1,1 +1,1 @@
-"""...TODO"""
+"""The switcher_io component."""

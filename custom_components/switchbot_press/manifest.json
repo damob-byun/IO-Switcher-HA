@@ -1,8 +1,8 @@
 {
-  "domain": "switcherio_ha",
-  "name": "switcherio_ha",
+  "domain": "switcher_io",
+  "name": "switcher_io",
   "version":"0.0.1",
   "documentation": "https://github.com/damob-byun/PySwitcherIO-HA",
-  "requirements": ["PySwitchbot==0.0.1"],
+  "requirements": ["PySwitcherIO==0.0.1"],
   "codeowners": ["@damob.byun"]
 }
