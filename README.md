@@ -6,7 +6,7 @@ HACS에서 Custom Integration 추가하신담에 여기 경로 추가하세요.
 
 ```yaml
 switch:
-  - platform: switcher_io
+  - platform: switcherio_ha
     mac: 'XX:XX:XX:XX:XX:XX'
 
 ```
