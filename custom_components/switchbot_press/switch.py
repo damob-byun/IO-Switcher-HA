@@ -2,7 +2,7 @@ import logging
 from typing import Any, Dict
 
 # pylint: disable=import-error, no-member
-import PySwitchbot
+import pyswitcherio
 import voluptuous as vol
 
 from homeassistant.components.switch import PLATFORM_SCHEMA, SwitchDevice
@@ -42,7 +42,7 @@ class switcher_io(SwitchDevice, RestoreEntity):
         self._last_run_success = None
         self._name = name
         self._mac = mac
-        self._device = PySwitchbot.IOSwitcher(mac, int(type))
+        self._device = pyswitcherio.IOSwitcher(mac, int(type))
 
     async def async_added_to_hass(self):
         """Run when entity about to be added."""
