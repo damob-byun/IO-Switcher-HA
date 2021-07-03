@@ -42,6 +42,7 @@ class switcher_io(SwitchDevice, RestoreEntity):
         self._last_run_success = None
         self._name = name
         self._mac = mac
+        self._power = False
         self._device = pyswitcherio.IOSwitcher(mac, int(type))
 
     async def async_added_to_hass(self):
@@ -56,24 +57,21 @@ class switcher_io(SwitchDevice, RestoreEntity):
         """Turn device on."""
         if self._device.turn_on():
             self._last_run_success = True
+            self._power = True
         else:
             self._last_run_success = False
 
     def turn_off(self, **kwargs) -> None:
         if self._device.turn_off():
             self._last_run_success = True
+            self._power = False
         else:
             self._last_run_success = False
 
     @property
-    def assumed_state(self) -> bool:
-        """Return true if unable to access real state of entity."""
-        return False
-
-    @property
     def is_on(self) -> bool:
         """Return true if device is on."""
-        return False
+        return self._power
 
     @property
     def unique_id(self) -> str:
