@@ -1,6 +1,6 @@
 # SwitcherIO HomeAssistant
 
-[PySwitcherIO](https://github.com/damob-byun/PySwitcherIO)를 이용해서 만들었습니다.
+[PySwitcherIO](https://github.com/damob-byun/PySwitcherIO)를 이용해서 만들었습니다. 물론 이것도 내가 만들었지만 ㅋㅋ
 
 스위쳐 아이오 Switch를 홈 어시스턴트에 추가 합니다.
 HACS에서 Custom Integration 추가하신담에 여기 경로 추가하세요.
@@ -21,7 +21,7 @@ sudo hcitool lescan
 
 ```yaml
 switch:
-  - platform: switcherio_ha
+  - platform: switcher_io
     type: "1" #1구 2구의 경우는 2
     mac: 'XX:XX:XX:XX:XX:XX'
 ```
