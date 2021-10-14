@@ -9,8 +9,8 @@ HACS에서 Custom Integration 추가하신담에 여기 경로 추가하세요.
 
 ## installation
 
-1. HACS를 통해 설치한다. 통째로 config 안에 넣는다
-2. configration.yaml을 다음과 같이 수정한다.
+1. HACS를 통해 설치합니다. 통째로 config 안에 넣으시면 됩니다.
+2. configration.yaml을 다음과 같이 수정합니다.
 
 ## How to Use
 
@@ -20,9 +20,21 @@ sudo hcitool lescan
 를 통해 맥주소를 알아내고
 
 ```yaml
+#1구의 경우.
 switch:
   - platform: switcher_io
-    type: "1" #1구 2구의 경우는 2
+    type: "1"
+    mac: 'XX:XX:XX:XX:XX:XX'
+#2구의 경우 두개 추가하시면 됩니다.
+switch:
+  - platform: switcher_io
+    name: "top side"
+    type: "1"
+    mac: 'XX:XX:XX:XX:XX:XX'
+switch:
+  - platform: switcher_io
+    name: "bottom side side"
+    type: "2"
     mac: 'XX:XX:XX:XX:XX:XX'
 ```
 
