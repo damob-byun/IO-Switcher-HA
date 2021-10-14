@@ -33,7 +33,7 @@ switch:
     mac: 'XX:XX:XX:XX:XX:XX'
 switch:
   - platform: switcher_io
-    name: "bottom side side"
+    name: "bottom side"
     type: "2"
     mac: 'XX:XX:XX:XX:XX:XX'
 ```
