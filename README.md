@@ -31,7 +31,6 @@ switch:
     name: "top side"
     type: "1"
     mac: 'XX:XX:XX:XX:XX:XX'
-switch:
   - platform: switcher_io
     name: "bottom side"
     type: "2"
