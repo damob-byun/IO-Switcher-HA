@@ -76,7 +76,7 @@ class switcher_io(SwitchDevice, RestoreEntity):
     @property
     def unique_id(self) -> str:
         """Return a unique, Home Assistant friendly identifier for this entity."""
-        return self._mac.replace(":", "")
+        return self._mac.replace(":", "")+self.type
 
     @property
     def name(self) -> str:
