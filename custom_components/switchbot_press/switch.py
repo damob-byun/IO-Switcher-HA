@@ -41,6 +41,7 @@ class switcher_io(SwitchDevice, RestoreEntity):
         self._state = None
         self._last_run_success = None
         self._name = name
+        self._type = type
         self._mac = mac
         self._power = False
         self._device = pyswitcherio.IOSwitcher(mac, int(type))
@@ -76,7 +77,7 @@ class switcher_io(SwitchDevice, RestoreEntity):
     @property
     def unique_id(self) -> str:
         """Return a unique, Home Assistant friendly identifier for this entity."""
-        return self._mac.replace(":", "")+self.type
+        return self._mac.replace(":", "")+self._type
 
     @property
     def name(self) -> str:
