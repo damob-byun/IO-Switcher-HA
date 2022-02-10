@@ -46,15 +46,7 @@ class switcher_io(SwitchEntity):
         self._power = False
         self._device = pyswitcherio.IOSwitcher(mac, int(type))
 
-    async def async_added_to_hass(self):
-        """Run when entity about to be added."""
-        await super().async_added_to_hass()
-        old_state = await self.async_get_last_state()
-        if not old_state :
-            return
-        self._state = old_state.state == "on"
-
-    def turn_on(self, **kwargs) -> None:
+    def async_turn_on(self, **kwargs) -> None:
         """Turn device on."""
         if self._device.turn_on():
             self._last_run_success = True
@@ -62,7 +54,7 @@ class switcher_io(SwitchEntity):
         else:
             self._last_run_success = False
 
-    def turn_off(self, **kwargs) -> None:
+    def async_turn_off(self, **kwargs) -> None:
         if self._device.turn_off():
             self._last_run_success = True
             self._power = False
