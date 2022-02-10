@@ -5,7 +5,7 @@ from typing import Any, Dict
 import pyswitcherio
 import voluptuous as vol
 
-from homeassistant.components.switch import PLATFORM_SCHEMA, SwitchDevice
+from homeassistant.components.switch import PLATFORM_SCHEMA, SwitchEntity
 from homeassistant.const import CONF_MAC, CONF_NAME, CONF_TYPE
 import homeassistant.helpers.config_validation as cv
 from homeassistant.helpers.restore_state import RestoreEntity
@@ -32,7 +32,7 @@ def setup_platform(hass, config, add_entities, discovery_info=None):
     add_entities([switcher_io(mac_addr, name, type)])
 
 
-class switcher_io(SwitchDevice, RestoreEntity):
+class switcher_io(SwitchEntity):
     """ioSwitcher."""
 
     def __init__(self, mac, name, type) -> None:
