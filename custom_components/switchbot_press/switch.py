@@ -46,17 +46,17 @@ class switcher_io(SwitchEntity):
         self._power = False
         self._device = pyswitcherio.IOSwitcher(mac, int(type))
 
-    def async_turn_on(self, **kwargs) -> None:
+    async def async_turn_on(self, **kwargs) -> None:
         """Turn device on."""
-        result = asyncio.run(self._device.turn_on())
+        result = await self._device.turn_on()
         if result:
             self._last_run_success = True
             self._power = True
         else:
             self._last_run_success = False
 
-    def async_turn_off(self, **kwargs) -> None:
-        result = asyncio.run(self._device.turn_off())
+    async def async_turn_off(self, **kwargs) -> None:
+        result = await self._device.turn_off()
         if result:
             self._last_run_success = True
             self._power = False
