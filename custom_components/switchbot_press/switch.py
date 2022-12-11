@@ -1,6 +1,6 @@
 import logging
 from typing import Any, Dict
-
+import asyncio
 # pylint: disable=import-error, no-member
 import pyswitcherio
 import voluptuous as vol
@@ -48,14 +48,16 @@ class switcher_io(SwitchEntity):
 
     def async_turn_on(self, **kwargs) -> None:
         """Turn device on."""
-        if self._device.turn_on():
+        result = asyncio.run(self._device.turn_on())
+        if result:
             self._last_run_success = True
             self._power = True
         else:
             self._last_run_success = False
 
     def async_turn_off(self, **kwargs) -> None:
-        if self._device.turn_off():
+        result = asyncio.run(self._device.turn_off())
+        if result:
             self._last_run_success = True
             self._power = False
         else:
