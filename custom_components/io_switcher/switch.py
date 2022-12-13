@@ -5,6 +5,13 @@ import asyncio
 import pyswitcherio
 import voluptuous as vol
 
+try:
+    from homeassistant.components.switch import SwitchEntity
+except ImportError:
+    from homeassistant.components.switch import SwitchDevice as SwitchEntity
+
+
+from homeassistant.components import bluetooth
 from homeassistant.components.switch import PLATFORM_SCHEMA, SwitchEntity
 from homeassistant.const import CONF_MAC, CONF_NAME, CONF_TYPE
 import homeassistant.helpers.config_validation as cv
@@ -24,18 +31,18 @@ PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend(
 )
 
 
-def setup_platform(hass, config, add_entities, discovery_info=None):
+async def async_setup_platform(hass, config, async_add_entities, discovery_info=None):
     """IOSwitcher setup."""
     name = config.get(CONF_NAME)
     mac_addr = config[CONF_MAC]
     type = config.get(CONF_TYPE)
-    add_entities([switcher_io(mac_addr, name, type)])
+    async_add_entities([switcher_io(hass, mac_addr, name, type)])
 
 
 class switcher_io(SwitchEntity):
     """ioSwitcher."""
 
-    def __init__(self, mac, name, type) -> None:
+    def __init__(self, hass, mac, name, type) -> None:
         """Initialize the ioSwitcher."""
 
         self._state = None
@@ -44,7 +51,10 @@ class switcher_io(SwitchEntity):
         self._type = type
         self._mac = mac
         self._power = False
-        self._device = pyswitcherio.IOSwitcher(mac, int(type))
+        ble_device = bluetooth.async_ble_device_from_address(
+            hass, self._mac.upper(), True
+        )
+        self._device = pyswitcherio.IOSwitcher(mac, ble_device, int(type))
 
     async def async_turn_on(self, **kwargs) -> None:
         """Turn device on."""
